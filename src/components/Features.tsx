@@ -14,15 +14,19 @@ interface Feature {
   description: string
 }
 
+type FeatureKey = 'conversations' | 'smartAssistance' | 'advancedAI' | 'creative'
+
 const featureIcons = {
   conversations: ChatBubbleLeftRightIcon,
   smartAssistance: SparklesIcon,
   advancedAI: CpuChipIcon,
   creative: LightBulbIcon
-}
+} as const
 
 export function Features() {
   const { t } = useLanguage()
+
+  const featureKeys: FeatureKey[] = ['conversations', 'smartAssistance', 'advancedAI', 'creative']
 
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8">
@@ -37,14 +41,14 @@ export function Features() {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {Object.entries(t.features).map(([key, feature]) => {
-            const Icon = featureIcons[key as keyof typeof featureIcons]
-            const typedFeature = feature as Feature
+          {featureKeys.map((key) => {
+            const Icon = featureIcons[key]
+            const feature = t.features[key]
             return (
               <div key={key} className="glass-panel p-6">
                 <Icon className="h-12 w-12 text-blue-500 mb-4" />
-                <h3 className="text-xl font-semibold mb-2">{typedFeature.title}</h3>
-                <p className="text-gray-600 dark:text-gray-300">{typedFeature.description}</p>
+                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300">{feature.description}</p>
               </div>
             )
           })}
