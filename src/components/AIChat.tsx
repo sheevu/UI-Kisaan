@@ -1,7 +1,8 @@
-"use client";
+"use client";  // ✅ Correct placement
+
 import { useState } from "react";
 
-export default function AIChat() {  // ✅ Ensure 'default' export is used
+export default function AIChat() {  // ✅ Correct 'default' export
   const [userInput, setUserInput] = useState("");
   const [response, setResponse] = useState("");
 
@@ -38,4 +39,4 @@ export default function AIChat() {  // ✅ Ensure 'default' export is used
       </div>
     </div>
   );
-}
+}  // ✅ Removed extra closing brace
