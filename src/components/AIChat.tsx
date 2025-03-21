@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 
-export default function AIChat() {
+export default function AIChat() {  // ✅ Ensure 'default' export is used
   const [userInput, setUserInput] = useState("");
   const [response, setResponse] = useState("");
 
